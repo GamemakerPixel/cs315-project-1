@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsv54oatgckjp"]
+[gd_scene load_steps=11 format=3 uid="uid://dsv54oatgckjp"]
 
 [ext_resource type="Script" path="res://scripts/Birdscript.gd" id="1_hjhxw"]
 [ext_resource type="Texture2D" uid="uid://c4fmp37p8rdfg" path="res://sprites/fishTile_080.png" id="2_jrear"]
 [ext_resource type="PackedScene" uid="uid://d10wpgk0dbtt4" path="res://gameObjects/wall.tscn" id="3_qrdjl"]
 [ext_resource type="Script" path="res://scripts/Sus.gd" id="4_kebhp"]
+[ext_resource type="Material" uid="uid://8c6f36p10rew" path="res://resources/defeat_particles.tres" id="5_gng7m"]
 [ext_resource type="Texture2D" uid="uid://civb8y0opchff" path="res://sprites/fishTile_078.png" id="5_jkv1j"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="6_f61hf"]
 
@@ -52,9 +53,10 @@ shape = SubResource("RectangleShape2D_0fjj1")
 [node name="Sus" type="RigidBody2D" parent="."]
 position = Vector2(861, 515)
 gravity_scale = 0.0
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("4_kebhp")
+particle_effect = ExtResource("5_gng7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sus"]
 shape = SubResource("CircleShape2D_280fk")

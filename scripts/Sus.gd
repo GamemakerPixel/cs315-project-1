@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 #TODO: You'll probably need an export_var for the particle effect here
+@export var particle_effect: ParticleProcessMaterial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
