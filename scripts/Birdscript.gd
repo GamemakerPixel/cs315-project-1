@@ -21,5 +21,3 @@ func _input(evt):
 			#apply a force in the kickDr direction * 300
 		
 			
-
-
