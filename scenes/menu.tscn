@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dewyn5as4inkm"]
+
+[ext_resource type="Script" path="res://scripts/StartGame.gd" id="1_5s5pc"]
+
+[node name="menu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1162.0
+offset_bottom = 639.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 193.0
+offset_right = 621.0
+offset_bottom = 235.0
+scale = Vector2(2, 2)
+text = "That bird game"
+
+[node name="btnPlay" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 313.0
+offset_right = 688.0
+offset_bottom = 371.0
+text = "Begin"
+script = ExtResource("1_5s5pc")
+
+[connection signal="pressed" from="Control/btnPlay" to="Control/btnPlay" method="_on_pressed"]
