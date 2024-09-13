@@ -1,53 +1,194 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsv54oatgckjp"]
+[gd_scene load_steps=18 format=3 uid="uid://dsv54oatgckjp"]
 
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_04g46"]
 [ext_resource type="Script" path="res://scripts/Birdscript.gd" id="1_hjhxw"]
 [ext_resource type="Texture2D" uid="uid://c4fmp37p8rdfg" path="res://sprites/fishTile_080.png" id="2_jrear"]
 [ext_resource type="PackedScene" uid="uid://d10wpgk0dbtt4" path="res://gameObjects/wall.tscn" id="3_qrdjl"]
 [ext_resource type="Script" path="res://scripts/Sus.gd" id="4_kebhp"]
 [ext_resource type="Material" uid="uid://8c6f36p10rew" path="res://resources/defeat_particles.tres" id="5_gng7m"]
 [ext_resource type="Texture2D" uid="uid://civb8y0opchff" path="res://sprites/fishTile_078.png" id="5_jkv1j"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="6_f61hf"]
+[ext_resource type="Texture2D" uid="uid://bqq4jphv5o4ns" path="res://sprites/pulse_effect.png" id="7_6sjld"]
+[ext_resource type="Theme" uid="uid://tr8me2wjfnm" path="res://resources/default_theme.tres" id="8_16v33"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="9_5n0rq"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="11_fdnws"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cox6n"]
-radius = 59.0762
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pq25"]
+radius = 23.0
+height = 104.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0fjj1"]
-size = Vector2(1182, 41)
+size = Vector2(1152, 41)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_280fk"]
-radius = 47.0425
+radius = 26.1725
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Animation" id="Animation_5p13t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PulseEffect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PulseEffect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4syiv"]
+resource_name = "death"
+length = 0.1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.075, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1.5, 1.5), Vector2(1.6, 1.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.075, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.537255, 0.113725, 1), Color(1, 0.537255, 0.113725, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PulseEffect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.075, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0.1, 0.1), Vector2(0.5, 0.5), Vector2(0.75, 0.75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PulseEffect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.075, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.666667), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.075),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8u7ci"]
+_data = {
+"RESET": SubResource("Animation_5p13t"),
+"death": SubResource("Animation_4syiv")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_04g46")
 
 [node name="Fish" type="RigidBody2D" parent="."]
 position = Vector2(272, 216)
-gravity_scale = 0.0
+freeze = true
 script = ExtResource("1_hjhxw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fish"]
-shape = SubResource("CircleShape2D_cox6n")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5pq25")
 
 [node name="FishTile080" type="Sprite2D" parent="Fish"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_jrear")
 
 [node name="Wall" parent="." instance=ExtResource("3_qrdjl")]
-position = Vector2(659, 610)
+position = Vector2(659, 616)
 
 [node name="Wall2" parent="." instance=ExtResource("3_qrdjl")]
-position = Vector2(658, 344)
+position = Vector2(659, 353)
 
 [node name="Wall3" parent="." instance=ExtResource("3_qrdjl")]
-position = Vector2(1042, 611)
+position = Vector2(1042, 615)
 
 [node name="Wall4" parent="." instance=ExtResource("3_qrdjl")]
-position = Vector2(1040, 347)
+position = Vector2(1042, 351)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(11, 670)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(571, 10.5)
+position = Vector2(565, 0)
 shape = SubResource("RectangleShape2D_0fjj1")
 
 [node name="Sus" type="RigidBody2D" parent="."]
@@ -56,7 +197,6 @@ gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("4_kebhp")
-particle_effect = ExtResource("5_gng7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sus"]
 shape = SubResource("CircleShape2D_280fk")
@@ -64,18 +204,61 @@ shape = SubResource("CircleShape2D_280fk")
 [node name="Sprite2D" type="Sprite2D" parent="Sus"]
 texture = ExtResource("5_jkv1j")
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_f61hf")
+[node name="Particles" type="GPUParticles2D" parent="Sus"]
+emitting = false
+amount = 64
+process_material = ExtResource("5_gng7m")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.94
+trail_lifetime = 0.2
 
-[node name="Label" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "0"
+[node name="Animation" type="AnimationPlayer" parent="Sus"]
+libraries = {
+"": SubResource("AnimationLibrary_8u7ci")
+}
+
+[node name="PulseEffect" type="Sprite2D" parent="Sus"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_6sjld")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("9_5n0rq")
+
+[node name="Margin" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 15
+
+[node name="Header" type="HBoxContainer" parent="UI/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("8_16v33")
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Margin/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_font_sizes/font_size = 75
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="UI/Margin/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"
+script = ExtResource("11_fdnws")
+game_scene_path = "res://scenes/menu.tscn"
 
 [connection signal="body_entered" from="Sus" to="Sus" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="Sus" to="Sus" method="_on_body_shape_entered"]
+[connection signal="enemy_defeated" from="Sus" to="." method="_on_enemy_defeated"]
+[connection signal="finished" from="Sus/Particles" to="Sus" method="_on_particles_finished"]

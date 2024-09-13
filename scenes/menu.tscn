@@ -1,31 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dewyn5as4inkm"]
+[gd_scene load_steps=3 format=3 uid="uid://dewyn5as4inkm"]
 
-[ext_resource type="Script" path="res://scripts/StartGame.gd" id="1_5s5pc"]
+[ext_resource type="Theme" uid="uid://tr8me2wjfnm" path="res://resources/default_theme.tres" id="1_2iehk"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="1_5s5pc"]
 
-[node name="menu" type="Node2D"]
-
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1162.0
-offset_bottom = 639.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2iehk")
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 453.0
-offset_top = 193.0
-offset_right = 621.0
-offset_bottom = 235.0
-scale = Vector2(2, 2)
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -125.0
+offset_right = 176.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "That bird game"
 
-[node name="btnPlay" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 466.0
-offset_top = 313.0
-offset_right = 688.0
-offset_bottom = 371.0
+[node name="btnPlay" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "Begin"
 script = ExtResource("1_5s5pc")
-
-[connection signal="pressed" from="Control/btnPlay" to="Control/btnPlay" method="_on_pressed"]
+game_scene_path = "res://scenes/game.tscn"

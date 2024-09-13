@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://tr8me2wjfnm"]
+
+[ext_resource type="FontFile" uid="uid://c0w7px24sqiyy" path="res://delta_block.ttf" id="1_np0hp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0jvy"]
+bg_color = Color(0.176471, 0.113725, 0.054902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4sphx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5sv1"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.247059, 0.184314, 0.0901961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uk6hh"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.176471, 0.113725, 0.054902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbkju"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.447059, 0.392157, 0.219608, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52amn"]
+bg_color = Color(0.0980392, 0.0470588, 0.0235294, 1)
+
+[resource]
+default_font = ExtResource("1_np0hp")
+default_font_size = 20
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxFlat_u0jvy")
+Button/styles/focus = SubResource("StyleBoxEmpty_4sphx")
+Button/styles/hover = SubResource("StyleBoxFlat_t5sv1")
+Button/styles/normal = SubResource("StyleBoxFlat_uk6hh")
+Button/styles/pressed = SubResource("StyleBoxFlat_sbkju")
+HBoxContainer/constants/separation = 50
+Panel/styles/panel = SubResource("StyleBoxFlat_52amn")
+VBoxContainer/constants/separation = 15
