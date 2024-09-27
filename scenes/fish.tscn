@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2rk51esk4jte"]
+
+[ext_resource type="Script" path="res://scripts/Birdscript.gd" id="1_qsif3"]
+[ext_resource type="Texture2D" uid="uid://c4fmp37p8rdfg" path="res://sprites/fishTile_080.png" id="2_c68b0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pq25"]
+radius = 23.0
+height = 104.0
+
+[node name="Fish" type="RigidBody2D"]
+freeze = true
+script = ExtResource("1_qsif3")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5pq25")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_c68b0")
+
+[node name="WaitAfterStop" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="WaitAfterStop" to="." method="_stop"]
