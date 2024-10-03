@@ -8,7 +8,7 @@ var tracking := false
 var start_position: Vector2
 
 var fired = false : set = _set_fired
-var check_for_stop = false
+var check_for_stop := false
 
 
 func _ready() -> void:
@@ -17,7 +17,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	_wait_for_stop()
+	if check_for_stop:
+		_wait_for_stop()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,11 +31,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _wait_for_stop():
-	if not fired:
-		return
 	if linear_velocity.length() <= STOPPED_SPEED_THRESHOLD:
 		$WaitAfterStop.start()
-		fired = false
+		check_for_stop = false
 
 
 func _stop():

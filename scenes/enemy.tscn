@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Sus.gd" id="1_c12tv"]
 [ext_resource type="Texture2D" uid="uid://civb8y0opchff" path="res://sprites/fishTile_078.png" id="2_1wqnx"]
 [ext_resource type="Material" uid="uid://8c6f36p10rew" path="res://resources/defeat_particles.tres" id="3_rkvl4"]
-[ext_resource type="Texture2D" uid="uid://bqq4jphv5o4ns" path="res://sprites/pulse_effect.png" id="4_y7b87"]
+[ext_resource type="Texture2D" uid="uid://bqq4jphv5o4ns" path="res://assets/art/effects/pulse_effect.png" id="4_y7b87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_280fk"]
 radius = 26.1725
@@ -143,9 +143,8 @@ _data = {
 }
 
 [node name="Sus" type="RigidBody2D"]
-gravity_scale = 0.0
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 4
 script = ExtResource("1_c12tv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -173,5 +172,4 @@ modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_y7b87")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="Particles" to="." method="_on_particles_finished"]

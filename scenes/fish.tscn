@@ -20,6 +20,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_c68b0")
 
 [node name="WaitAfterStop" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 1.5
 
 [connection signal="timeout" from="WaitAfterStop" to="." method="_stop"]

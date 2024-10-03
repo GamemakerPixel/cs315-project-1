@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqq4jphv5o4ns"
-path="res://.godot/imported/pulse_effect.png-6b21613b5af5011ae087a27f604ab959.ctex"
+path="res://.godot/imported/pulse_effect.png-f40ee688b5a944fb8724d8094e75f999.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pulse_effect.png"
-dest_files=["res://.godot/imported/pulse_effect.png-6b21613b5af5011ae087a27f604ab959.ctex"]
+source_file="res://assets/art/effects/pulse_effect.png"
+dest_files=["res://.godot/imported/pulse_effect.png-f40ee688b5a944fb8724d8094e75f999.ctex"]
 
 [params]
 

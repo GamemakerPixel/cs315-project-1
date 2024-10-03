@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/fish_spawner.gd" id="2_56id8"]
 [ext_resource type="PackedScene" uid="uid://d2rk51esk4jte" path="res://scenes/fish.tscn" id="2_ijsi7"]
 [ext_resource type="PackedScene" uid="uid://cfh40nybb75tp" path="res://scenes/enemy.tscn" id="3_l8mb8"]
-[ext_resource type="PackedScene" uid="uid://d10wpgk0dbtt4" path="res://gameObjects/wall.tscn" id="3_qrdjl"]
 [ext_resource type="Theme" uid="uid://tr8me2wjfnm" path="res://resources/default_theme.tres" id="8_16v33"]
+[ext_resource type="PackedScene" uid="uid://d10wpgk0dbtt4" path="res://scenes/wall.tscn" id="8_ry82j"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="9_5n0rq"]
 [ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="11_fdnws"]
 
@@ -24,6 +24,7 @@ normal = Vector2(0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_04g46")
+menu = "res://scenes/menu.tscn"
 
 [node name="FishSpawner" type="Node2D" parent="."]
 position = Vector2(150, 274)
@@ -44,8 +45,10 @@ shape = SubResource("WorldBoundaryShape2D_nidck")
 [node name="UpperBound" type="CollisionShape2D" parent="SceneBounds"]
 shape = SubResource("WorldBoundaryShape2D_iycfo")
 
-[node name="Sus" parent="." instance=ExtResource("3_l8mb8")]
-position = Vector2(853, 489)
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Sus" parent="Enemies" instance=ExtResource("3_l8mb8")]
+position = Vector2(458, 614)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("9_5n0rq")
@@ -60,6 +63,8 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 15
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Header" type="HBoxContainer" parent="UI/Margin"]
 layout_mode = 2
@@ -119,14 +124,43 @@ horizontal_alignment = 1
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="Wall" parent="Walls" instance=ExtResource("3_qrdjl")]
-position = Vector2(659, 616)
+[node name="Wall" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(353, 563)
+segments = 5
 
-[node name="Wall2" parent="Walls" instance=ExtResource("3_qrdjl")]
-position = Vector2(659, 353)
+[node name="Wall2" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(569, 563)
+segments = 5
 
-[node name="Wall3" parent="Walls" instance=ExtResource("3_qrdjl")]
-position = Vector2(1042, 615)
+[node name="Wall3" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(465, 463)
+rotation = 1.5708
+segments = 10
 
-[node name="Wall4" parent="Walls" instance=ExtResource("3_qrdjl")]
-position = Vector2(1042, 351)
+[node name="Wall4" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(394, 363)
+segments = 5
+
+[node name="Wall5" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(530, 364)
+segments = 5
+
+[node name="Wall6" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(465, 264)
+rotation = 1.5708
+segments = 8
+
+[node name="Wall7" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(425, 166)
+segments = 5
+
+[node name="Wall8" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(503, 166)
+segments = 5
+
+[node name="Wall9" parent="Walls" instance=ExtResource("8_ry82j")]
+position = Vector2(468, 66)
+rotation = 1.5708
+segments = 6
+
+[connection signal="enemy_defeated" from="Enemies/Sus" to="." method="_on_enemy_defeated"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://d10wpgk0dbtt4"]
+
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_28er2"]
+[ext_resource type="Texture2D" uid="uid://cxkaciwuv538l" path="res://assets/art/walls/wood_beam.png" id="2_f0164"]
+[ext_resource type="Script" path="res://scripts/wall/wall_sprites.gd" id="2_jswqk"]
+[ext_resource type="Script" path="res://scripts/wall/wall_collision.gd" id="3_gct1s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8nn3"]
+atlas = ExtResource("2_f0164")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w08bg"]
+atlas = ExtResource("2_f0164")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxdb2"]
+atlas = ExtResource("2_f0164")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_helqx"]
+radius = 16.0
+height = 64.0
+
+[node name="Wall" type="RigidBody2D"]
+texture_filter = 1
+script = ExtResource("1_28er2")
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+script = ExtResource("2_jswqk")
+body_texture = SubResource("AtlasTexture_r8nn3")
+
+[node name="Head" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_w08bg")
+
+[node name="Body" type="Node2D" parent="Sprites"]
+
+[node name="Tail" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, 8)
+texture = SubResource("AtlasTexture_xxdb2")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_helqx")
+script = ExtResource("3_gct1s")
+segment_height = 32.0
