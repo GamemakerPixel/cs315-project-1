@@ -1,1 +1,6 @@
 Delta Block font - CC0 - https://www.fontspace.com/delta-block-font-f108775 - GGBotNet
+
+Part of fish hitting something sound - https://freesound.org/people/robbeman/sounds/495645/
+Enemy fish exploding - https://freesound.org/people/unfa/sounds/245645/
+(Would have edited sounds together with other sounds to make it better, but Audacity has decided to crash
+every time I open it and I don't have time...)

@@ -1,0 +1,232 @@
+[gd_scene load_steps=16 format=3 uid="uid://ccmagviluiw3g"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_xpw1g"]
+[ext_resource type="Script" path="res://scripts/fish_spawner.gd" id="2_nnraj"]
+[ext_resource type="PackedScene" uid="uid://d2rk51esk4jte" path="res://scenes/fish.tscn" id="3_6lc2a"]
+[ext_resource type="PackedScene" uid="uid://cfh40nybb75tp" path="res://scenes/enemy.tscn" id="4_xpp1l"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="5_sl0gm"]
+[ext_resource type="Theme" uid="uid://tr8me2wjfnm" path="res://resources/default_theme.tres" id="6_dfa68"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="7_o5ris"]
+[ext_resource type="PackedScene" uid="uid://d10wpgk0dbtt4" path="res://scenes/wall.tscn" id="8_xs7f5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vhu46"]
+normal = Vector2(-1, 0)
+distance = -1152.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjv8f"]
+distance = -648.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nidck"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iycfo"]
+normal = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_23si6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelCompleteMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
+}
+
+[sub_resource type="Animation" id="Animation_s6hun"]
+resource_name = "win_screen"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelCompleteMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_io64a"]
+_data = {
+"RESET": SubResource("Animation_23si6"),
+"win_screen": SubResource("Animation_s6hun")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_xpw1g")
+next_scene = "res://scenes/level_select.tscn"
+
+[node name="FishSpawner" type="Node2D" parent="."]
+position = Vector2(1024, 312)
+script = ExtResource("2_nnraj")
+fish_scene = ExtResource("3_6lc2a")
+
+[node name="SceneBounds" type="StaticBody2D" parent="."]
+
+[node name="RightBound" type="CollisionShape2D" parent="SceneBounds"]
+shape = SubResource("WorldBoundaryShape2D_vhu46")
+
+[node name="LowerBound" type="CollisionShape2D" parent="SceneBounds"]
+shape = SubResource("WorldBoundaryShape2D_rjv8f")
+
+[node name="LeftBound" type="CollisionShape2D" parent="SceneBounds"]
+shape = SubResource("WorldBoundaryShape2D_nidck")
+
+[node name="UpperBound" type="CollisionShape2D" parent="SceneBounds"]
+shape = SubResource("WorldBoundaryShape2D_iycfo")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Sus" parent="Enemies" instance=ExtResource("4_xpp1l")]
+position = Vector2(445, 601)
+rotation = 1.5708
+
+[node name="Sus2" parent="Enemies" instance=ExtResource("4_xpp1l")]
+position = Vector2(560, 488)
+
+[node name="Sus3" parent="Enemies" instance=ExtResource("4_xpp1l")]
+position = Vector2(336, 488)
+rotation = -3.14159
+
+[node name="Sus4" parent="Enemies" instance=ExtResource("4_xpp1l")]
+position = Vector2(448, 456)
+rotation = -1.5708
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_sl0gm")
+
+[node name="Margin" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 15
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Header" type="HBoxContainer" parent="UI/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("6_dfa68")
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Margin/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_font_sizes/font_size = 75
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="UI/Margin/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"
+script = ExtResource("7_o5ris")
+game_scene_path = "res://scenes/level_select.tscn"
+
+[node name="LevelCompleteMenu" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_dfa68")
+
+[node name="Margin" type="MarginContainer" parent="UI/LevelCompleteMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_dfa68")
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 15
+
+[node name="VBox" type="VBoxContainer" parent="UI/LevelCompleteMenu/Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/LevelCompleteMenu/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "You won!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_io64a")
+}
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(384, 600)
+segments = 3
+
+[node name="Wall3" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(445, 536)
+rotation = 1.5708
+segments = 6
+
+[node name="Wall4" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(528, 440)
+rotation = 0.785398
+segments = 6
+
+[node name="Wall6" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(176, 472)
+rotation = 0.785398
+segments = 14
+
+[node name="Wall7" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(720, 472)
+rotation = 2.35619
+segments = 14
+
+[node name="Wall8" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(445, 360)
+rotation = 1.5708
+segments = 7
+
+[node name="Wall9" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(288, 520)
+segments = 8
+
+[node name="Wall10" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(608, 520)
+segments = 8
+
+[node name="Wall5" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(368, 440)
+rotation = -0.785398
+segments = 6
+
+[node name="Wall2" parent="Walls" instance=ExtResource("8_xs7f5")]
+position = Vector2(512, 600)
+segments = 3
+
+[connection signal="enemy_defeated" from="Enemies/Sus" to="." method="_on_enemy_defeated"]
+[connection signal="enemy_defeated" from="Enemies/Sus2" to="." method="_on_enemy_defeated"]
+[connection signal="enemy_defeated" from="Enemies/Sus3" to="." method="_on_enemy_defeated"]
+[connection signal="enemy_defeated" from="Enemies/Sus4" to="." method="_on_enemy_defeated"]
+[connection signal="win_screen_shown" from="UI" to="." method="_on_win_screen_shown"]
+[connection signal="animation_finished" from="UI/AnimationPlayer" to="UI" method="_on_animation_player_animation_finished"]

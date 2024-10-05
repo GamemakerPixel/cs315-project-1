@@ -58,3 +58,8 @@ func _set_fired(new_fired: bool) -> void:
 	fired = new_fired
 	if fired:
 		check_for_stop = true
+
+
+func _on_body_entered(_body: Node) -> void:
+	$Collide.play()
+	body_entered.disconnect(_on_body_entered)

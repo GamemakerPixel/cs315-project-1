@@ -41,10 +41,11 @@ alignment = 1
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "That bird game"
+text = "the fish..."
+horizontal_alignment = 1
 
 [node name="btnPlay" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Begin"
 script = ExtResource("1_5s5pc")
-game_scene_path = "res://scenes/game.tscn"
+game_scene_path = "res://scenes/level_select.tscn"

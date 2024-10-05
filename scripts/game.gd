@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_file var menu: String
+@export_file var next_scene: String
 
 var max_score: int
 var score := 0
@@ -19,7 +19,11 @@ func _on_enemy_defeated() -> void:
 
 func _check_win_condition():
 	if score == max_score:
-		get_tree().change_scene_to_file(menu)
+		$UI.trigger_win()
+
+
+func _on_win_screen_shown():
+	get_tree().change_scene_to_file(next_scene)
 
 #TODO: Add a expert_var for fish object to spawn
 #TODO: Add a class property for score
